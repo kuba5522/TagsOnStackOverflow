@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
@@ -43,7 +43,7 @@ namespace TagsOnStackOverflow.Controllers
                         string name = (string)json.SelectToken("items[" + j + "].name");
                         int count = (int)json.SelectToken("items[" + j + "].count");
                         _tags.Add(new Tag() {
-                            ID = i * 100 + j,   //0-999
+                            ID = i * 100 + j + 1,   //1-1000
                             Name = name,
                             NumberOfOccurrences = count,
                             Popularity = string.Empty }
@@ -53,7 +53,7 @@ namespace TagsOnStackOverflow.Controllers
             }
             //calculate popularity of tags
             int sum = _tags.Sum(x => x.NumberOfOccurrences);
-            _tags.ForEach(x => x.Popularity = string.Format("Value: {0:P2}.", (double) x.NumberOfOccurrences / sum));
+            _tags.ForEach(x => x.Popularity = string.Format("{0:P3}", (double) x.NumberOfOccurrences / sum));
             return View(_tags);
         }
     }
