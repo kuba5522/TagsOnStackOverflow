@@ -1,0 +1,23 @@
+﻿@model List<TagsOnStackOverflow.Models.Tag>
+@{
+    ViewBag.Title = "Tagi na StackOverflow";
+}
+
+<div><b>Lista 1000 najpopularniejszych tagów na StackOverflow</b></div>
+<table class="table">
+    <tr>
+        <th> ID </th>
+        <th> Nazwa </th>
+        <th> Liczba wystąpień </th>
+        <th> Procentowa popularność </th>
+    </tr>
+    @foreach (var tag in Model)
+    {
+        <tr>
+            <td> @tag.ID </td>
+            <td> @tag.Name </td>
+            <td> @tag.NumberOfOccurrences </td>
+            <td> @tag.Popularity </td>
+        </tr>
+    }
+</table>  
